@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from 'vue'
-import { tabs, milestones } from './data/thesisData'
+import { tabs, milestones, m1Content } from './data/thesisData'
 
 const activeTab = ref('repository')
 const selectedMilestone = ref(milestones[0])
+const conceptMapImage = `${import.meta.env.BASE_URL}images/cps-concept-map.png`
 
 function selectTab(tab) {
   activeTab.value = tab.id
@@ -134,73 +135,115 @@ function selectMilestone(milestone) {
           <div class="divider"></div>
 
           <div class="detail-body">
-            <div>
-              <p class="content-label">OVERVIEW</p>
-
-              <p class="detail-text">
-                {{ selectedMilestone.description }}
-              </p>
-            </div>
-
             <div
               v-if="selectedMilestone.id === 1"
               class="m1-content"
             >
-              <p class="content-label">
-                CURRENT DIRECTION
-              </p>
+              <section class="m1-section">
+                <p class="content-label">01</p>
+                <h4>Project Overview</h4>
 
-              <p>
-                I’m interested in designing a multiplayer learning game
-                that explores how different interaction structures,
-                such as cooperation and competition, can shape the way
-                players interact, communicate, and learn together.
-              </p>
+                <p v-for="paragraph in m1Content.overview" :key="paragraph">
+                  {{ paragraph }}
+                </p>
+              </section>
 
-              <p>
-                I’m currently considering developing the project in Unity
-                and exploring what makes multiplayer cooperation
-                meaningful rather than simply having multiple players
-                working toward the same goal.
-              </p>
+              <div class="m1-paired-sections">
+                <section class="m1-section concept-map-section">
+                  <p class="content-label">02</p>
+                  <h4>Concept Map</h4>
+                  <p>{{ m1Content.conceptMapIntro }}</p>
 
-              <p class="content-label question-label">
-                QUESTIONS I’M EXPLORING
-              </p>
+                  <div class="concept-map-image-wrapper">
+                    <img
+                      class="concept-map-image"
+                      :src="conceptMapImage"
+                      alt="Collaborative Problem Solving concept map"
+                    >
+                  </div>
+                </section>
 
-              <ul>
-                <li>
-                  What makes cooperation in a multiplayer game meaningful?
-                </li>
+                <section class="m1-section direction-section">
+                  <p class="content-label">03</p>
+                  <h4>Current Design Direction</h4>
+                  <p class="exploratory-note">Exploratory directions, subject to change as the project develops.</p>
 
-                <li>
-                  What kinds of game mechanics encourage players to
-                  communicate and work together?
-                </li>
+                  <div class="direction-list">
+                    <div
+                      v-for="(direction, index) in m1Content.directions"
+                      :key="direction.label"
+                      class="direction-item"
+                    >
+                      <span class="direction-label">{{ direction.label }}</span>
+                      <p
+                        v-if="index < 3"
+                        class="direction-value"
+                      >
+                        {{ direction.items[0] }}
+                      </p>
+                      <div
+                        v-else
+                        class="direction-items"
+                      >
+                        <span v-for="item in direction.items" :key="item">{{ item }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
 
-                <li>
-                  How does competition change the way players interact?
-                </li>
+              <section class="m1-section spice-section">
+                <div class="spice-heading">
+                  <div>
+                    <p class="content-label">04</p>
+                    <h4>SPICE Framework</h4>
+                  </div>
 
-                <li>
-                  Can cooperation and competition exist together in the
-                  same learning experience?
-                </li>
-              </ul>
+                  <span class="framework-status">Early Framework</span>
+                </div>
+
+                <p>
+                  To further narrow down my early idea, I used the SPICE framework to think about the context, players, design intervention, and possible ways of evaluating the project.
+                </p>
+
+                <div class="spice-list">
+                  <div
+                    v-for="item in m1Content.spice"
+                    :key="item.letter"
+                    class="spice-item"
+                  >
+                    <span class="spice-letter">{{ item.letter }}</span>
+                    <div>
+                      <strong>{{ item.category }}</strong>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
 
             <div
               v-else
-              class="placeholder"
+              class="m2-placeholder-body"
             >
-              <span>✦</span>
-
               <div>
-                <strong>Content coming soon</strong>
+                <p class="content-label">OVERVIEW</p>
 
-                <p>
-                  This milestone will be documented as the project progresses.
+                <p class="detail-text">
+                  {{ selectedMilestone.description }}
                 </p>
+              </div>
+
+              <div class="placeholder">
+                <span>✦</span>
+
+                <div>
+                  <strong>Content coming soon</strong>
+
+                  <p>
+                    This milestone will be documented as the project progresses.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

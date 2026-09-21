@@ -5,6 +5,63 @@ export const tabs = [
   { id: 'about', label: 'About', available: false }
 ]
 
+export const m1Content = {
+  overview: [
+    'Some of my favorite multiplayer game experiences are the moments when I realize I cannot solve something by myself. I might have information my teammate does not have, while they might be able to do something I cannot. Sometimes we have to explain what we see, sometimes we have to coordinate our timing, and sometimes we simply have to figure out what the other person is thinking.',
+    'Games like It Takes Two and Overcooked create these moments through cooperation, while Among Us creates a very different kind of interaction by combining cooperation, competition, and incomplete information. Even though these games use very different mechanics, the interaction between players becomes an important part of the experience.',
+    'This made me start thinking about what actually makes collaboration meaningful in a game. Simply putting two players on the same team does not necessarily mean they are solving problems together. In some games, players can work toward the same goal while still completing most tasks independently. I am more interested in situations where players need each other—where they have to share information, coordinate their actions, understand what their partner knows, and develop a solution together.',
+    'For my capstone, I want to explore Collaborative Problem Solving (CPS) through the design of a two-player game. My goal is to create a game where collaboration is not just an option, but an important part of solving the challenges. I am currently interested in mechanics such as different player roles, information asymmetry, shared goals, and interdependent abilities.',
+    'Through this project, I hope to explore how game design can create opportunities for players to practice collaborative problem-solving skills through play.'
+  ],
+  conceptMapIntro:
+    'This concept map represents my current thinking about how different game mechanics could create interdependence between players and provide opportunities to practice collaborative problem solving.',
+  directions: [
+    { label: 'Learning Focus', items: ['Collaborative Problem Solving'] },
+    { label: 'Game Format', items: ['Two-Player Multiplayer Game'] },
+    { label: 'Core Principle', items: ['Neither player should be able to solve the problem alone.'] },
+    {
+      label: 'Possible Supporting Skills',
+      items: ['Communication', 'Coordination', 'Perspective Taking']
+    },
+    {
+      label: 'Possible Game Mechanics',
+      items: [
+        'Different Player Roles',
+        'Information Asymmetry',
+        'Shared Goals',
+        'Interdependent Abilities'
+      ]
+    }
+  ],
+  spice: [
+    {
+      letter: 'S',
+      category: 'Setting',
+      description: 'Multiplayer game-based learning environment'
+    },
+    {
+      letter: 'P',
+      category: 'Perspective / Population',
+      description: 'Two players; target age group is still to be determined'
+    },
+    {
+      letter: 'I',
+      category: 'Intervention / Innovation',
+      description: 'A two-player game designed around interdependent collaborative problem solving'
+    },
+    {
+      letter: 'C',
+      category: 'Comparison',
+      description: 'Still to be determined. A formal comparison may not be necessary for the design project.'
+    },
+    {
+      letter: 'E',
+      category: 'Evaluation',
+      description: 'Observe collaborative problem-solving behaviors such as information sharing, joint strategy development, coordination, and decision making.'
+    }
+  ]
+}
+
 export const milestones = [
   {
     id: 1,
