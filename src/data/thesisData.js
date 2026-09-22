@@ -1,8 +1,21 @@
 export const tabs = [
   { id: 'repository', label: 'Repository', available: true },
-  { id: 'research', label: 'Research Notes', available: false },
+  { id: 'research', label: 'Research Notes', available: true },
   { id: 'development', label: 'Development Log', available: false },
   { id: 'about', label: 'About', available: false }
+]
+
+export const researchPapers = [
+  {
+    citation:
+      'Bartolomé, J., Idoya del Río, I., Martínez, A., Aranguren, A., Laña, I., & Alloza, S. (2025). Game on: Exploring the potential for soft skill development through video games. Information, 16(10), 918.',
+    url: 'https://doi.org/10.3390/info16100918'
+  },
+  {
+    citation:
+      'Toups Dugas, P. O., Kerne, A., & Hamilton, W. (2009). Game design principles for engaging cooperative play: Core mechanics and interfaces for non-mimetic simulation of fire emergency response. In Proceedings of the 2009 ACM SIGGRAPH Symposium on Video Games.',
+    url: 'https://ecologylab.net/research/publications/p71-toups.pdf'
+  }
 ]
 
 export const m1Content = {

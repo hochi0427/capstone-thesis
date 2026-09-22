@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { tabs, milestones, m1Content } from './data/thesisData'
+import { tabs, milestones, m1Content, researchPapers } from './data/thesisData'
 
 const activeTab = ref('repository')
 const selectedMilestone = ref(milestones[0])
@@ -248,6 +248,42 @@ function selectMilestone(milestone) {
             </div>
           </div>
         </article>
+      </section>
+
+      <!-- Research Notes -->
+      <section
+        v-else-if="activeTab === 'research'"
+        class="research-page"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="section-label">THESIS REPOSITORY</p>
+            <h2>Research Notes</h2>
+          </div>
+
+          <p class="section-description">
+            Papers I am reading as I develop the research foundation for my thesis.
+          </p>
+        </div>
+
+        <div class="research-list">
+          <article
+            v-for="paper in researchPapers"
+            :key="paper.url"
+            class="research-card"
+          >
+            <p class="research-citation">{{ paper.citation }}</p>
+
+            <a
+              class="paper-link"
+              :href="paper.url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Paper <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
       </section>
 
       <!-- Coming Soon pages -->

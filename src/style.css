@@ -183,6 +183,56 @@ main {
   line-height: 1.7;
 }
 
+/* RESEARCH NOTES */
+
+.research-page {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.research-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.research-card {
+  width: 83%;
+  max-width: 1100px;
+  align-self: center;
+  padding: 20px 28px;
+
+  background: rgba(255, 250, 244, 0.52);
+  border: 1px solid #e4d5c6;
+  border-radius: 18px;
+}
+
+.research-citation {
+  margin: 0;
+
+  color: #554138;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.paper-link {
+  display: inline-block;
+  margin-top: 12px;
+
+  color: #9d4b34;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.paper-link:hover {
+  color: #713923;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* TIMELINE */
 
 .timeline-scroll {
@@ -658,6 +708,15 @@ footer {
   .section-heading {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  .research-card {
+    width: 100%;
+    padding: 24px 25px;
+  }
+
+  .research-citation {
+    font-size: 18px;
   }
 
   .detail-body {
