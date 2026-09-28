@@ -1,10 +1,25 @@
 <script setup>
-import { ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import { tabs, milestones, m1Content, researchPapers } from './data/thesisData'
+import ProjectPlan from './components/ProjectPlan.vue'
 
 const activeTab = ref('repository')
-const selectedMilestone = ref(milestones[0])
+function milestoneFromUrl() {
+  const milestoneId = new URLSearchParams(window.location.search).get('milestone')
+  return milestones.find((milestone) => String(milestone.id) === milestoneId) ?? milestones[0]
+}
+
+const selectedMilestone = ref(milestoneFromUrl())
 const conceptMapImage = `${import.meta.env.BASE_URL}images/cps-concept-map.png`
+
+function syncMilestoneFromUrl() {
+  selectedMilestone.value = milestoneFromUrl()
+}
+
+window.addEventListener('popstate', syncMilestoneFromUrl)
+onBeforeUnmount(() => {
+  window.removeEventListener('popstate', syncMilestoneFromUrl)
+})
 
 function selectTab(tab) {
   activeTab.value = tab.id
@@ -12,6 +27,12 @@ function selectTab(tab) {
 
 function selectMilestone(milestone) {
   selectedMilestone.value = milestone
+
+  const url = new URL(window.location.href)
+  if (url.searchParams.get('milestone') !== String(milestone.id)) {
+    url.searchParams.set('milestone', milestone.id)
+    window.history.pushState(null, '', url)
+  }
 }
 </script>
 
@@ -120,7 +141,7 @@ function selectMilestone(milestone) {
               </p>
 
               <h3>
-                {{ selectedMilestone.title }}
+                {{ selectedMilestone.id === 2 ? 'Milestone 2 — Project Plan' : selectedMilestone.title }}
               </h3>
             </div>
 
@@ -222,10 +243,9 @@ function selectMilestone(milestone) {
               </section>
             </div>
 
-            <div
-              v-else
-              class="m2-placeholder-body"
-            >
+            <ProjectPlan v-else-if="selectedMilestone.id === 2" />
+
+            <div v-else class="m2-placeholder-body">
               <div>
                 <p class="content-label">OVERVIEW</p>
 

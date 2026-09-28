@@ -81,7 +81,7 @@ export const milestones = [
     short: 'M1',
     title: 'Early Ideas',
     semester: 'Semester 1',
-    status: 'Current',
+    status: 'Completed',
     description:
       'Initial exploration of my capstone direction, including my interests in multiplayer interaction, cooperation, competition, and learning through games.'
   },
@@ -90,7 +90,7 @@ export const milestones = [
     short: 'M2',
     title: 'Project Plan',
     semester: 'Semester 1',
-    status: 'Upcoming',
+    status: 'Current',
     description:
       'Defining the scope of the project, target audience, learning goals, timeline, and overall development plan.'
   },
@@ -156,5 +156,108 @@ export const milestones = [
     status: 'Upcoming',
     description:
       'Presenting the final project and completing the thesis paper.'
+  }
+]
+
+export const milestone2Phases = [
+  {
+    id: 'discover',
+    title: 'Discover',
+    date: 'Sep 2026 – Oct 2026',
+    description:
+      'Explore the problem space and build a research foundation for the project.',
+    goal:
+      'Develop a foundational understanding of Collaborative Problem Solving (CPS), potential learners, and how multiplayer and cooperative game design may support CPS development.',
+    methods: [
+      'Literature review on Collaborative Problem Solving',
+      'Learner / audience research',
+      'Literature review on multiplayer and cooperative games',
+      'Precedent analysis of existing games'
+    ],
+    artifacts: [
+      'Research notes',
+      'Literature matrix',
+      'Initial learner insights',
+      'CPS research summary',
+      'Precedent analysis',
+      'Initial design insights'
+    ]
+  },
+  {
+    id: 'define',
+    title: 'Define',
+    date: 'Oct 2026 – Nov 2026',
+    description:
+      'Synthesize research findings into a focused learning and game design direction.',
+    goal:
+      'Define the target learners, CPS skills, learning objectives, design requirements, game design direction, and evaluation approach for the project.',
+    methods: [
+      'Research synthesis',
+      'Identify CPS skill components',
+      'Define target learners',
+      'Develop learning objectives',
+      'Translate research findings into design requirements',
+      'Establish an initial game design direction',
+      'Plan evaluation methods'
+    ],
+    artifacts: [
+      'CPS skill framework',
+      'Target learner definition',
+      'Learning objectives',
+      'Design requirements',
+      'Game design direction',
+      'Evaluation plan'
+    ]
+  },
+  {
+    id: 'develop',
+    title: 'Develop',
+    date: 'Nov 2026 – Feb 2027',
+    description:
+      'Translate the design direction into game mechanics, interaction designs, and playable prototypes.',
+    goal:
+      'Explore and develop multiplayer game mechanics that create opportunities for players to practice Collaborative Problem Solving.',
+    methods: [
+      'Ideation',
+      'Game mechanic design',
+      'Interaction design',
+      'Low-fidelity prototyping',
+      'Unity prototyping',
+      'Iterative game development'
+    ],
+    artifacts: [
+      'Game concepts',
+      'Core gameplay loop',
+      'Game mechanics documentation',
+      'Interaction flow',
+      'Low-fidelity prototype',
+      'Playable Unity prototype'
+    ]
+  },
+  {
+    id: 'deliver',
+    title: 'Deliver',
+    date: 'Feb 2027 – Apr 2027',
+    description:
+      'Evaluate, iterate, and refine the game into a final prototype while synthesizing the design findings.',
+    goal:
+      'Evaluate the design outcomes through player testing, refine the prototype based on evidence, and document the final design findings.',
+    methods: [
+      'Playtesting',
+      'Player observation',
+      'Analyze player behavior and feedback',
+      'Analyze CPS-related behaviors',
+      'Iterative revision',
+      'Final evaluation'
+    ],
+    artifacts: [
+      'Playtest protocol',
+      'Observation and feedback data',
+      'Iteration notes',
+      'Final Unity prototype',
+      'Design findings',
+      'Final thesis paper',
+      'Expo / presentation materials'
+    ]
   }
 ]
