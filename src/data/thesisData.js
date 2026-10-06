@@ -167,20 +167,53 @@ export const milestone2Phases = [
     description:
       'Explore the problem space and build a research foundation for the project.',
     goal:
-      'Develop a foundational understanding of Collaborative Problem Solving (CPS), potential learners, and how multiplayer and cooperative game design may support CPS development.',
+      'To determine who I should design for, which Collaborative Problem Solving (CPS) skills the game should focus on, and what game design features could create opportunities for players to practice those skills.',
     methods: [
-      'Literature review on Collaborative Problem Solving',
-      'Learner / audience research',
-      'Literature review on multiplayer and cooperative games',
-      'Precedent analysis of existing games'
+      {
+        title: 'Literature Review on Collaborative Problem Solving',
+        details: [
+          'CPS components and behaviors',
+          'Communication, coordination, and perspective taking'
+        ]
+      },
+      {
+        title: 'Learner / Audience Research',
+        details: [
+          'Age-related CPS and communication needs',
+          'Identify potential target audience'
+        ]
+      },
+      {
+        title: 'Literature Review on Collaborative and Multiplayer Games',
+        details: [
+          'Effects on CPS and soft skills',
+          'Skill transfer and limitations'
+        ]
+      },
+      {
+        title: 'Research on Collaborative Game Design',
+        details: [
+          'Interdependence',
+          'Roles and information asymmetry',
+          'Shared goals and abilities'
+        ]
+      },
+      {
+        title: 'Precedent Analysis of Existing Games',
+        details: [
+          'It Takes Two',
+          'Overcooked',
+          'Other relevant cooperative games'
+        ]
+      }
     ],
     artifacts: [
-      'Research notes',
-      'Literature matrix',
-      'Initial learner insights',
-      'CPS research summary',
-      'Precedent analysis',
-      'Initial design insights'
+      'Research Notes',
+      'Literature Matrix',
+      'Target Audience Insights',
+      'CPS Framework',
+      'Precedent Analysis',
+      'Design Principles / Requirements'
     ]
   },
   {
@@ -190,23 +223,51 @@ export const milestone2Phases = [
     description:
       'Synthesize research findings into a focused learning and game design direction.',
     goal:
-      'Define the target learners, CPS skills, learning objectives, design requirements, game design direction, and evaluation approach for the project.',
+      'Translate research findings into a clear and evidence-based direction for the game, connecting CPS learning needs with concrete design decisions.',
     methods: [
-      'Research synthesis',
-      'Identify CPS skill components',
-      'Define target learners',
-      'Develop learning objectives',
-      'Translate research findings into design requirements',
-      'Establish an initial game design direction',
-      'Plan evaluation methods'
+      {
+        title: 'Research Synthesis',
+        details: [
+          'Compare and organize findings across CPS, learner, and game research',
+          'Identify recurring themes and relevant insights'
+        ]
+      },
+      {
+        title: 'CPS Skill Prioritization',
+        details: [
+          'Select CPS skills appropriate for the target learners',
+          'Connect selected skills to observable player behaviors'
+        ]
+      },
+      {
+        title: 'Learning & Design Alignment',
+        details: [
+          'Translate CPS skills into learning objectives',
+          'Translate research findings into design requirements'
+        ]
+      },
+      {
+        title: 'Game Design Framing',
+        details: [
+          'Define how players should interact and collaborate',
+          'Establish the initial game design direction and constraints'
+        ]
+      },
+      {
+        title: 'Evaluation Planning',
+        details: [
+          'Determine what evidence will indicate CPS-related behaviors',
+          'Identify appropriate evaluation methods for later playtesting'
+        ]
+      }
     ],
     artifacts: [
-      'CPS skill framework',
-      'Target learner definition',
-      'Learning objectives',
-      'Design requirements',
-      'Game design direction',
-      'Evaluation plan'
+      'CPS Skill Framework',
+      'Target Learner Profile',
+      'Learning Objectives',
+      'Design Requirements',
+      'Game Design Direction',
+      'Evaluation Plan'
     ]
   },
   {
