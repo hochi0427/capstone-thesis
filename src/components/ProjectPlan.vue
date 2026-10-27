@@ -156,3 +156,18 @@ function selectPhase(phaseId) {
     </Teleport>
   </section>
 </template>
+
+<style scoped>
+.lightbox-image {
+  width: min(1100px, calc(95vw - 58px), calc((92vh - 88px) * 1.496));
+  height: auto;
+  max-width: none;
+  max-height: none;
+}
+
+@media (max-width: 700px) {
+  .lightbox-image {
+    width: 900px;
+  }
+}
+</style>

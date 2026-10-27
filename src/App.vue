@@ -2,6 +2,8 @@
 import { onBeforeUnmount, ref } from 'vue'
 import { tabs, milestones, m1Content, researchPapers } from './data/thesisData'
 import ProjectPlan from './components/ProjectPlan.vue'
+import ResearchPlan from './components/ResearchPlan.vue'
+import ConceptMap from './components/ConceptMap.vue'
 
 const activeTab = ref('repository')
 function milestoneFromUrl() {
@@ -141,7 +143,7 @@ function selectMilestone(milestone) {
               </p>
 
               <h3>
-                {{ selectedMilestone.id === 2 ? 'Milestone 2 — Project Plan' : selectedMilestone.title }}
+                {{ selectedMilestone.id === 2 ? 'Milestone 2 — Project Plan' : selectedMilestone.id === 3 ? 'Milestone 3 — Research Plan' : selectedMilestone.title }}
               </h3>
             </div>
 
@@ -176,11 +178,7 @@ function selectMilestone(milestone) {
                   <p>{{ m1Content.conceptMapIntro }}</p>
 
                   <div class="concept-map-image-wrapper">
-                    <img
-                      class="concept-map-image"
-                      :src="conceptMapImage"
-                      alt="Collaborative Problem Solving concept map"
-                    >
+                    <ConceptMap :src="conceptMapImage" />
                   </div>
                 </section>
 
@@ -244,6 +242,7 @@ function selectMilestone(milestone) {
             </div>
 
             <ProjectPlan v-else-if="selectedMilestone.id === 2" />
+            <ResearchPlan v-else-if="selectedMilestone.id === 3" />
 
             <div v-else class="m2-placeholder-body">
               <div>
@@ -289,12 +288,21 @@ function selectMilestone(milestone) {
         <div class="research-list">
           <article
             v-for="paper in researchPapers"
-            :key="paper.url"
+            :key="paper.citation"
             class="research-card"
           >
-            <p class="research-citation">{{ paper.citation }}</p>
+            <p class="research-citation">
+              <template v-if="paper.citationParts">
+                <template v-for="(part, index) in paper.citationParts" :key="index"><em v-if="part.italic">{{ part.text }}</em><template v-else>{{ part.text }}</template></template>
+              </template>
+              <template v-else>{{ paper.citation }}</template>
+            </p>
+            <div v-if="paper.tags?.length" class="direction-items" aria-label="Research topics">
+              <span v-for="tag in paper.tags" :key="tag">{{ tag }}</span>
+            </div>
 
             <a
+              v-if="paper.url"
               class="paper-link"
               :href="paper.url"
               target="_blank"

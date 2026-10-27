@@ -7,6 +7,16 @@ export const tabs = [
 
 export const researchPapers = [
   {
+    citation: 'Care, E., & Griffin, P. (2017). Assessment of collaborative problem-solving processes. In The nature of problem solving: Using research to inspire 21st century learning (pp. 227–243). OECD Publishing.',
+    citationParts: [
+      { text: 'Care, E., & Griffin, P. (2017). Assessment of collaborative problem-solving processes. In ' },
+      { text: 'The nature of problem solving: Using research to inspire 21st century learning', italic: true },
+      { text: ' (pp. 227–243). OECD Publishing.' }
+    ],
+    tags: ['CPS', 'CPS Framework', 'Social Skills', 'Cognitive Skills', 'Collaborative Problem Solving'],
+    url: 'https://www.oecd.org/en/publications/pisa-2015-assessment-and-analytical-framework_9789264281820-en.html'
+  },
+  {
     citation:
       'Bartolomé, J., Idoya del Río, I., Martínez, A., Aranguren, A., Laña, I., & Alloza, S. (2025). Game on: Exploring the potential for soft skill development through video games. Information, 16(10), 918.',
     url: 'https://doi.org/10.3390/info16100918'
@@ -97,11 +107,11 @@ export const milestones = [
   {
     id: 3,
     short: 'M3',
-    title: 'Research',
+    title: 'Research Plan',
     semester: 'Semester 1',
-    status: 'Upcoming',
+    status: 'Current',
     description:
-      'Reviewing literature and existing games related to multiplayer learning, cooperation, competition, communication, and game-based learning.'
+      'Exploring Collaborative Problem Solving Through Two-Player Game Design.'
   },
   {
     id: 4,

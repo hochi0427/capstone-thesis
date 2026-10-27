@@ -217,6 +217,10 @@ main {
   line-height: 1.55;
 }
 
+.research-card .direction-items {
+  margin-top: 14px;
+}
+
 .paper-link {
   display: inline-block;
   margin-top: 12px;
