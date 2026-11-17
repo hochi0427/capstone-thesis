@@ -7,6 +7,23 @@ export const tabs = [
 
 export const researchPapers = [
   {
+    id: 'horn-2023',
+    title: 'Expert and non-expert at the same time: Knowledge integration processes and dynamics in interdisciplinary teamwork',
+    authors: 'Horn, A., Urias, E., Klein, J. T., Hess, A., & Zweekhorst, M. B. M.',
+    year: 2023,
+    journal: 'Sustainability Science',
+    volume: 18,
+    pages: '2357–2371',
+    citation: 'Horn, A., Urias, E., Klein, J. T., Hess, A., & Zweekhorst, M. B. M. (2023). Expert and non-expert at the same time: Knowledge integration processes and dynamics in interdisciplinary teamwork. Sustainability Science, 18, 2357–2371. https://doi.org/10.1007/s11625-023-01365-6',
+    citationParts: [
+      { text: 'Horn, A., Urias, E., Klein, J. T., Hess, A., & Zweekhorst, M. B. M. (2023). Expert and non-expert at the same time: Knowledge integration processes and dynamics in interdisciplinary teamwork. ' },
+      { text: 'Sustainability Science, 18', italic: true },
+      { text: ', 2357–2371. https://doi.org/10.1007/s11625-023-01365-6' }
+    ],
+    tags: ['Stage 02', "Master's Students", 'Interdisciplinary Collaboration', 'Relative Expertise', 'Knowledge Integration', 'Epistemic Competencies', 'Team Dynamics'],
+    url: 'https://doi.org/10.1007/s11625-023-01365-6'
+  },
+  {
     citation: 'Care, E., & Griffin, P. (2017). Assessment of collaborative problem-solving processes. In The nature of problem solving: Using research to inspire 21st century learning (pp. 227–243). OECD Publishing.',
     citationParts: [
       { text: 'Care, E., & Griffin, P. (2017). Assessment of collaborative problem-solving processes. In ' },

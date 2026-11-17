@@ -1,11 +1,32 @@
 <script setup>
-import { onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
 import { tabs, milestones, m1Content, researchPapers } from './data/thesisData'
 import ProjectPlan from './components/ProjectPlan.vue'
 import ResearchPlan from './components/ResearchPlan.vue'
 import ConceptMap from './components/ConceptMap.vue'
 
 const activeTab = ref('repository')
+const selectedTag = ref('')
+const referenceReturn = ref(null)
+const researchTags = [...new Set(researchPapers.flatMap(paper => paper.tags ?? []))]
+const filteredPapers = computed(() => selectedTag.value ? researchPapers.filter(paper => paper.tags?.includes(selectedTag.value)) : researchPapers)
+async function openReference(id) {
+  referenceReturn.value = { scroll: window.scrollY, focus: document.activeElement }
+  selectedTag.value = ''
+  activeTab.value = 'research'
+  await nextTick()
+  const note = document.getElementById(`research-note-${id}`)
+  note?.scrollIntoView({ block: 'center' })
+  note?.focus({ preventScroll: true })
+}
+async function returnToFindings() {
+  const previous = referenceReturn.value
+  activeTab.value = 'repository'
+  await nextTick()
+  window.scrollTo({ top: previous.scroll, behavior: 'instant' })
+  previous.focus?.focus({ preventScroll: true })
+  referenceReturn.value = null
+}
 function milestoneFromUrl() {
   const milestoneId = new URLSearchParams(window.location.search).get('milestone')
   return milestones.find((milestone) => String(milestone.id) === milestoneId) ?? milestones[0]
@@ -84,7 +105,7 @@ function selectMilestone(milestone) {
     <main>
       <!-- Repository -->
       <section
-        v-if="activeTab === 'repository'"
+        v-show="activeTab === 'repository'"
         class="repository"
       >
         <div class="section-heading">
@@ -242,7 +263,7 @@ function selectMilestone(milestone) {
             </div>
 
             <ProjectPlan v-else-if="selectedMilestone.id === 2" />
-            <ResearchPlan v-else-if="selectedMilestone.id === 3" />
+            <ResearchPlan v-else-if="selectedMilestone.id === 3" @reference="openReference" />
 
             <div v-else class="m2-placeholder-body">
               <div>
@@ -271,7 +292,7 @@ function selectMilestone(milestone) {
 
       <!-- Research Notes -->
       <section
-        v-else-if="activeTab === 'research'"
+        v-if="activeTab === 'research'"
         class="research-page"
       >
         <div class="section-heading">
@@ -285,10 +306,19 @@ function selectMilestone(milestone) {
           </p>
         </div>
 
+        <button v-if="referenceReturn" type="button" class="notes-return" @click="returnToFindings">← Return to Stage 02 findings</button>
+        <label class="notes-filter">Filter by topic
+          <select v-model="selectedTag">
+            <option value="">All topics</option>
+            <option v-for="tag in researchTags" :key="tag" :value="tag">{{ tag }}</option>
+          </select>
+        </label>
         <div class="research-list">
           <article
-            v-for="paper in researchPapers"
+            v-for="paper in filteredPapers"
             :key="paper.citation"
+            :id="paper.id ? `research-note-${paper.id}` : undefined"
+            tabindex="-1"
             class="research-card"
           >
             <p class="research-citation">
@@ -316,7 +346,7 @@ function selectMilestone(milestone) {
 
       <!-- Coming Soon pages -->
       <section
-        v-else
+        v-else-if="activeTab !== 'repository'"
         class="coming-soon-page"
       >
         <p class="section-label">

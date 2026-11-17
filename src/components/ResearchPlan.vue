@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { researchStages, researchStatusLabels, stageResearchStatus } from '../data/researchPlan'
 import ResearchFindings from './ResearchFindings.vue'
 
+const emit = defineEmits(['reference'])
 const root = ref(null)
 const popup = ref(null)
 const active = ref(null)
@@ -195,7 +196,7 @@ onBeforeUnmount(() => {
           </div>
           <div v-if="selectedStage?.id === stage.id" class="rp-findings-slot">
             <ResearchFindings :stage="stage" :question-id="selectedId" :show-directions="inline"
-              @select="selectFinding" @close="closeFindings(true)" />
+              @select="selectFinding" @close="closeFindings(true)" @reference="emit('reference', $event)" />
           </div>
         </section>
       </template>

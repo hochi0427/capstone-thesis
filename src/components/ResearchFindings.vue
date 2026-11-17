@@ -1,5 +1,6 @@
 <script setup>
 import { computed, nextTick, ref, watch } from 'vue'
+import KnowledgeFramework from './KnowledgeFramework.vue'
 import { researchStatusLabels } from '../data/researchPlan'
 
 const props = defineProps({
@@ -7,8 +8,11 @@ const props = defineProps({
   questionId: { type: String, required: true },
   showDirections: Boolean
 })
-const emit = defineEmits(['select', 'close'])
+const emit = defineEmits(['select', 'close', 'reference'])
 const content = ref(null)
+const view = ref('insights')
+const hasFramework = computed(() => props.stage.id === 2)
+const views = [{ id: 'insights', label: 'Research Insights' }, { id: 'framework', label: 'Conceptual Framework' }]
 const index = computed(() => props.stage.questions.findIndex(q => q.id === props.questionId))
 const question = computed(() => props.stage.questions[index.value])
 const sections = computed(() => question.value.findings?.sections ?? [])
@@ -34,22 +38,32 @@ watch(() => props.questionId, async () => {
       <p class="findings-status">{{ researchStatusLabels[question.status] }}</p>
     </header>
 
-    <div ref="content" class="findings-content" tabindex="0" role="region" :aria-label="`${question.id} research findings, scroll to read more`">
+    <nav v-if="hasFramework" class="findings-views" aria-label="Research findings views">
+      <button v-for="item in views" :key="item.id" type="button" :aria-pressed="view === item.id"
+        :aria-controls="`findings-${item.id}-${stage.id}`" @click="view = item.id">{{ item.label }}</button>
+    </nav>
+    <div v-show="!hasFramework || view === 'insights'" :id="`findings-insights-${stage.id}`" ref="content" class="findings-content" tabindex="0" role="region" :aria-label="`${question.id} research findings, scroll to read more`">
       <details v-if="showDirections" :key="question.id" class="findings-directions">
         <summary>Research directions</summary>
         <ul><li v-for="direction in question.directions" :key="direction">{{ direction }}</li></ul>
       </details>
       <template v-if="sections.length">
-        <section v-for="(section, sectionIndex) in sections" :key="`${question.id}-${sectionIndex}`" class="findings-section">
+        <section v-for="(section, sectionIndex) in sections" :key="`${question.id}-${sectionIndex}`" :class="{ 'findings-reflection': section.reflection }" class="findings-section">
           <h6 v-if="section.heading">{{ section.heading }}</h6>
           <p v-for="(paragraph, paragraphIndex) in section.paragraphs" :key="paragraphIndex">{{ paragraph }}</p>
-          <ul v-if="section.bullets?.length"><li v-for="(bullet, bulletIndex) in section.bullets" :key="bulletIndex">{{ bullet }}</li></ul>
+          <component :is="section.ordered ? 'ol' : 'ul'" v-if="section.bullets?.length"><li v-for="(bullet, bulletIndex) in section.bullets" :key="bulletIndex">{{ bullet }}</li></component>
+          <p v-if="section.conclusion">{{ section.conclusion }}</p>
+          <a v-if="section.cite" class="findings-citation" :href="`#research-note-${question.findings.referenceId}`" @click.prevent="emit('reference', question.findings.referenceId)">(Horn et al., 2023)</a>
         </section>
       </template>
       <div v-else class="findings-placeholder">
         <p class="findings-label">RESEARCH IN PROGRESS</p>
         <p>Research findings for this question will be added as the study progresses.</p>
       </div>
+    </div>
+
+    <div v-if="hasFramework" v-show="view === 'framework'" :id="`findings-framework-${stage.id}`" class="findings-content" tabindex="0" role="region" aria-label="Conceptual framework, scroll to explore">
+      <KnowledgeFramework @reference="emit('reference', $event)" />
     </div>
 
     <footer class="findings-navigation" aria-label="Questions in this stage">
@@ -62,6 +76,12 @@ watch(() => props.questionId, async () => {
 
 <style scoped>
 .research-findings { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: hidden; min-width: 0; border: 1px solid #e4d5c6; border-radius: 20px; background: #fffdf9; box-shadow: 0 8px 26px #783f2d08; color: #554138; }
+.findings-views { display: flex; gap: 6px; padding: 10px 16px; border-bottom: 1px solid #eadccf; }
+.findings-views button { flex: 1; min-width: 0; padding: 10px 6px; border: 1px solid #e4d5c6; border-radius: 10px; background: #fffaf4; color: #783f2d; font-size: 12px; cursor: pointer; }
+.findings-views button[aria-pressed='true'] { background: #b86445; border-color: #b86445; color: #fff; }
+.findings-views button:focus-visible { outline: 2px solid #783f2d; outline-offset: 2px; }
+.findings-reflection { padding: 16px; border-left: 2px solid #d8b5a1; background: #f7f1e8; border-radius: 0 12px 12px 0; }
+.findings-citation { color: #9d4b34; font-size: 12px; text-underline-offset: 3px; }
 .findings-header { flex: 0 0 auto; padding: 20px 24px 16px; border-bottom: 1px solid #eadccf; }
 .findings-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .findings-label { margin: 0; color: #a6543a; font-size: 11px; font-weight: 600; letter-spacing: .13em; }

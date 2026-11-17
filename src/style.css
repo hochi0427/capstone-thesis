@@ -1143,3 +1143,8 @@ footer {
 #783F2D 深色
 #332720 文字
 */
+
+.notes-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; color: #735f53; font-size: 13px; }
+.notes-filter select, .notes-return { max-width: 100%; padding: 10px 14px; border: 1px solid #e4d5c6; border-radius: 10px; background: #fffaf4; color: #783f2d; font: inherit; }
+.notes-return { margin-top: 24px; cursor: pointer; }
+.research-card:focus { outline: 2px solid #b86445; outline-offset: 4px; }

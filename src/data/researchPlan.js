@@ -1,5 +1,5 @@
 // Transcribed from Milesrone3_Hochi.pdf, Part II (pages 2–3).
-// Question wording, directions, descriptions, and outputs are preserved verbatim.
+// Stage 02 questions and findings updated with Horn et al. (2023).
 export const researchStages = [
   {
     id: 1,
@@ -104,25 +104,81 @@ export const researchStages = [
     questions: [
       {
         id: 'Q4',
-        status: 'not-started',
-        findings: { sections: [] },
-        question: 'What are the characteristics and learning needs of graduate students?',
-        directions: [
-          'Academic and research collaboration; team-based assignments',
-          'Prior collaboration experience, motivation, and relevant learner characteristics',
-          'Access to technology and feasibility of recruiting playtesters'
-        ]
+        status: 'completed',
+        question: "How do master's students from different academic backgrounds collaborate in project-based learning environments?",
+        directions: ['Understanding team composition', 'Leveraging diverse expertise', 'Distributing roles and responsibilities', 'Sharing and integrating knowledge', 'Exploring collaborative activities'],
+        findings: {
+          referenceId: 'horn-2023',
+          sections: [
+            {
+              heading: 'Interdisciplinary Collaboration and Relative Expertise',
+              paragraphs: [
+                "Master's students in interdisciplinary project-based environments may work with peers who bring different academic backgrounds, knowledge, and perspectives.",
+                'Horn et al. (2023) examined an interdisciplinary student team working on a shared sustainability project. Their qualitative case study introduces relative expertise: team members need to act as both experts and non-experts depending on the knowledge being discussed.',
+                "When contributing knowledge from their own discipline, students act as experts by sharing their contributory expertise. When engaging with unfamiliar disciplines, they act as non-experts by asking questions, acknowledging what they do not know, and developing an understanding of their teammates’ expertise.",
+                'This case suggests that interdisciplinary collaboration involves more than dividing responsibilities. It requires students to communicate their expertise, engage with unfamiliar perspectives, and integrate knowledge into shared understanding. These insights from one team should not be generalized to all master’s students.'
+              ],
+              cite: true
+            },
+            {
+              heading: 'My Design Reflection',
+              reflection: true,
+              paragraphs: [
+                'This finding connects to my current game concept of assigning players different roles and complementary abilities.',
+                'Instead of simply giving players separate tasks, I want to explore how different roles can encourage players to share knowledge, learn from each other, and work toward a shared solution.'
+              ]
+            }
+          ]
+        }
       },
       {
         id: 'Q5',
-        status: 'not-started',
-        findings: { sections: [] },
-        question: 'What CPS challenges do graduate students face, and why is CPS development important for them?',
-        directions: [
-          'Evidence of challenges in communication, coordination, and shared decision-making',
-          'Differences across disciplines and group-work contexts',
-          'Evidence supporting a need for additional CPS practice'
-        ]
+        status: 'completed',
+        question: "What CPS skills are needed when master's students work with peers who have different expertise and perspectives?",
+        directions: ['Perspective taking', 'Building shared understanding', 'Knowledge integration', 'Coordination across expertise', 'Joint decision-making'],
+        findings: {
+          referenceId: 'horn-2023',
+          sections: [
+            {
+              heading: 'Epistemic Competencies and Challenges in Interdisciplinary Teamwork',
+              paragraphs: ['Horn et al. (2023) discuss two important competencies for interdisciplinary knowledge integration. These insights come from one qualitative case study, rather than a universal skills model for all master’s students.'],
+              bullets: [
+                'Epistemic Stability: Communicating one’s own expertise, explaining reasoning, and recognizing the boundaries and uncertainty of one’s knowledge. The article uses the term “epistemic steadiness”; stability is the label used in this synthesis.',
+                'Epistemic Adaptability: Acknowledging not-knowing, asking questions, remaining curious, and critically engaging with knowledge from other disciplines.'
+              ],
+              cite: true
+            },
+            {
+              heading: 'Observed Interaction Patterns',
+              paragraphs: ['The study identified two unproductive interaction patterns in the team:'],
+              bullets: [
+                'Conformative Dynamics: Agreeing quickly, avoiding differences, and failing to explore alternative perspectives can prevent the team from using its members’ unique expertise.',
+                'Performative Dynamics: Avoiding uncertainty and not-knowing, sometimes acting more knowledgeable than one is or resisting reconsideration of decisions.'
+              ],
+              cite: true
+            },
+            {
+              heading: 'Factors Shaping Team Dynamics',
+              paragraphs: ['The researchers identified three interacting categories of factors shaping these dynamics:'],
+              ordered: true,
+              bullets: ['Individual epistemic competencies', 'Shared assumptions about teamwork', 'Social context'],
+              conclusion: 'These findings suggest that effective interdisciplinary collaboration requires more than knowledge sharing. Team members also need to question assumptions, communicate uncertainty, and engage critically and constructively with different perspectives.',
+              cite: true
+            },
+            {
+              heading: 'My Design Reflection',
+              reflection: true,
+              paragraphs: ['These findings suggest three potential directions for my game:'],
+              ordered: true,
+              bullets: [
+                'Developing Awareness: Help players recognize the value and limitations of different expertise.',
+                'Practicing Epistemic Competencies: Encourage players to explain their reasoning, acknowledge uncertainty, ask questions, and integrate different perspectives.',
+                'Creating a Supportive Environment: Design interactions that encourage constructive discussion, curiosity, and knowledge sharing.'
+              ],
+              conclusion: 'The first two are potential player learning goals. The third is a game design goal that supports those behaviors. These are design interpretations to explore, not evidence that the game improves CPS.'
+            }
+          ]
+        }
       }
     ],
     expectedOutput: 'Target audience profile, learner needs, and audience-specific problem statement'
@@ -130,26 +186,32 @@ export const researchStages = [
   {
     id: 3,
     title: 'Understanding CPS Development',
-    description: 'Identify how CPS can be supported and where existing approaches fall short.',
+    description: 'Explore instructional approaches and collaborative conditions that support CPS skills in interdisciplinary teamwork.',
     questions: [
       {
         id: 'Q6',
         status: 'not-started',
         findings: { sections: [] },
-        question: 'What instructional approaches have been shown to support CPS development?',
+        question: "What instructional approaches can support master's students in developing CPS skills for interdisciplinary collaboration?",
         directions: [
-          'Collaborative/problem-based learning, scaffolding, feedback, and reflection',
-          'Empirical evidence of outcomes and conditions'
+          'Practicing epistemic competencies',
+          'Supporting knowledge sharing and integration',
+          'Scaffolding constructive questioning',
+          'Encouraging perspective taking and reflection',
+          'Developing shared understanding through collaborative tasks'
         ]
       },
       {
         id: 'Q7',
         status: 'not-started',
         findings: { sections: [] },
-        question: 'What conditions support productive collaboration?',
+        question: "What conditions encourage productive collaboration among master's students with different expertise and perspectives?",
         directions: [
-          'Positive interdependence, shared goals, and differentiated roles',
-          'Shared regulation, communication, and task structure'
+          'Creating psychological safety',
+          'Encouraging acknowledgment of not-knowing',
+          'Supporting epistemic stability and adaptability',
+          'Promoting constructive disagreement',
+          'Establishing shared goals and positive interdependence'
         ]
       },
       {
@@ -163,7 +225,7 @@ export const researchStages = [
         ]
       }
     ],
-    expectedOutput: 'CPS learning principles and identified gaps'
+    expectedOutput: 'CPS learning principles, supportive conditions, and identified gaps.'
   },
   {
     id: 4,
