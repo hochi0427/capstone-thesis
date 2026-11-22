@@ -1,9 +1,14 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, ref } from 'vue'
 import { tabs, milestones, m1Content, researchPapers } from './data/thesisData'
 import ProjectPlan from './components/ProjectPlan.vue'
 import ResearchPlan from './components/ResearchPlan.vue'
 import ConceptMap from './components/ConceptMap.vue'
+import Ideation from './components/Ideation.vue'
+
+const RobotLab = defineAsyncComponent(() => import('./components/RobotLab.vue'))
+const isRobotLab = new URLSearchParams(window.location.search).get('prototype') === 'robot-lab'
+const robotLabUrl = `${import.meta.env.BASE_URL}?prototype=robot-lab`
 
 const activeTab = ref('repository')
 const selectedTag = ref('')
@@ -60,7 +65,8 @@ function selectMilestone(milestone) {
 </script>
 
 <template>
-  <div class="site">
+  <RobotLab v-if="isRobotLab" />
+  <div v-else class="site">
     <!-- Header -->
     <header class="hero">
       <div class="hero-inner">
@@ -264,6 +270,18 @@ function selectMilestone(milestone) {
 
             <ProjectPlan v-else-if="selectedMilestone.id === 2" />
             <ResearchPlan v-else-if="selectedMilestone.id === 3" @reference="openReference" />
+
+            <Ideation v-else-if="selectedMilestone.id === 4" />
+
+            <div v-else-if="selectedMilestone.id === 5" class="m1-content">
+              <section class="m1-section">
+                <p class="content-label">PLAYABLE PROTOTYPE</p>
+                <h4>Robot Lab — A Collaborative Robot Building Game</h4>
+                <p>{{ selectedMilestone.description }}</p>
+                <p>A single-device, two-player simulation exploring complementary knowledge and collaborative robot building. An early design prototype for Milestone 5.</p>
+                <a class="paper-link" :href="robotLabUrl">Open Robot Lab prototype</a>
+              </section>
+            </div>
 
             <div v-else class="m2-placeholder-body">
               <div>

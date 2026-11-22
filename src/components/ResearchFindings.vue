@@ -11,6 +11,7 @@ const props = defineProps({
 const emit = defineEmits(['select', 'close', 'reference'])
 const content = ref(null)
 const view = ref('insights')
+const questionExpanded = ref(false)
 const hasFramework = computed(() => props.stage.id === 2)
 const views = [{ id: 'insights', label: 'Research Insights' }, { id: 'framework', label: 'Conceptual Framework' }]
 const index = computed(() => props.stage.questions.findIndex(q => q.id === props.questionId))
@@ -22,6 +23,7 @@ function navigate(offset) {
   if (next) emit('select', next.id)
 }
 watch(() => props.questionId, async () => {
+  questionExpanded.value = false
   await nextTick()
   if (content.value) content.value.scrollTop = 0
 })
@@ -34,7 +36,14 @@ watch(() => props.questionId, async () => {
         <p class="findings-label">RESEARCH FINDINGS</p>
         <button type="button" class="findings-button findings-close" aria-label="Close research findings" @click="emit('close')">×</button>
       </div>
-      <h6 :id="`rp-findings-title-${stage.id}`" aria-live="polite">{{ question.id }}. {{ question.question }}</h6>
+      <h6 :id="`rp-findings-title-${stage.id}`" aria-live="polite">
+        <button type="button" class="findings-question-toggle" :aria-expanded="questionExpanded"
+          :aria-controls="`rp-findings-question-${stage.id}`" :class="{ 'is-expanded': questionExpanded }"
+          :title="questionExpanded ? 'Collapse question' : 'Show full question'" @click="questionExpanded = !questionExpanded">
+          <span :id="`rp-findings-question-${stage.id}`" class="findings-question-text">{{ question.id }}. {{ question.question }}</span>
+          <span class="findings-question-icon" aria-hidden="true">{{ questionExpanded ? '−' : '+' }}</span>
+        </button>
+      </h6>
       <p class="findings-status">{{ researchStatusLabels[question.status] }}</p>
     </header>
 
@@ -82,10 +91,16 @@ watch(() => props.questionId, async () => {
 .findings-views button:focus-visible { outline: 2px solid #783f2d; outline-offset: 2px; }
 .findings-reflection { padding: 16px; border-left: 2px solid #d8b5a1; background: #f7f1e8; border-radius: 0 12px 12px 0; }
 .findings-citation { color: #9d4b34; font-size: 12px; text-underline-offset: 3px; }
-.findings-header { flex: 0 0 auto; padding: 20px 24px 16px; border-bottom: 1px solid #eadccf; }
+.findings-header { flex: 0 0 auto; padding: 12px 24px; border-bottom: 1px solid #eadccf; }
 .findings-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .findings-label { margin: 0; color: #a6543a; font-size: 11px; font-weight: 600; letter-spacing: .13em; }
-.findings-header h6 { margin: 10px 0; font: inherit; font-size: 15px; font-weight: 600; line-height: 1.5; }
+.findings-header h6 { margin: 4px 0; font: inherit; font-size: 15px; font-weight: 600; line-height: 1.5; }
+.findings-question-toggle { display: flex; align-items: baseline; gap: 10px; width: 100%; min-width: 0; padding: 6px 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; border-radius: 4px; }
+.findings-question-text { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.findings-question-toggle.is-expanded .findings-question-text { white-space: normal; overflow-wrap: anywhere; }
+.findings-question-icon { flex-shrink: 0; color: #9d4b34; }
+.findings-question-toggle:hover { color: #9d4b34; }
+.findings-question-toggle:focus-visible { outline: 2px solid #9d4b34; outline-offset: 3px; }
 .findings-status { margin: 0; font-size: 12px; color: #735f53; }
 .findings-content { flex: 1 1 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; scrollbar-color: #c6a78f #fffaf4; padding: 24px; font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
 .findings-section + .findings-section { margin-top: 26px; }
@@ -103,7 +118,7 @@ watch(() => props.questionId, async () => {
 .findings-directions { margin-bottom: 24px; font-size: 13px; }
 .findings-directions summary { color: #9d4b34; cursor: pointer; }
 @media (max-width: 1000px) {
-  .findings-header { padding: 16px; }
+  .findings-header { padding: 10px 16px; }
   .findings-content { padding: 16px; }
   .findings-navigation { padding: 10px 16px; }
 }
